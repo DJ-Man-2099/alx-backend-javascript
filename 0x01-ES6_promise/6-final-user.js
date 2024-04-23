@@ -1,9 +1,20 @@
 import signUpUser from './4-user-promise';
 import uploadPhoto from './5-photo-reject';
 
-export default (firstName, lastName, fileName) => Promise
-  .allSettled([signUpUser(firstName, lastName), uploadPhoto(fileName)])
-  .then((values) => values.map((response) => ({
-    status: response.status,
-    value: response.status === 'fulfilled' ? response.value : String(response.reason),
-  })));
+export default async (firstName, lastName, fileName) => {
+  const user = await signUpUser(firstName, lastName).then((user) => ({
+    value: user,
+    status: 'fulfilled',
+  })).catch((error) => ({
+    value: String(error),
+    status: 'rejected',
+  }));
+  const photo = await uploadPhoto(fileName).then((user) => ({
+    value: user,
+    status: 'fulfilled',
+  })).catch((error) => ({
+    value: String(error),
+    status: 'rejected',
+  }));
+  return [user, photo];
+};
