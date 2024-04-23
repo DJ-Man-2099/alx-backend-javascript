@@ -5,5 +5,5 @@ export default (firstName, lastName, fileName) => Promise
   .allSettled([signUpUser(firstName, lastName), uploadPhoto(fileName)])
   .then((values) => values.map((response) => ({
     status: response.status,
-    value: response.status === 'fulfilled' ? response.value : response.reason,
+    value: response.status === 'fulfilled' ? response.value : String(response.reason),
   })));
