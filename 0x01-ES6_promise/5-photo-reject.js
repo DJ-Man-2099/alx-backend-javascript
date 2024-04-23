@@ -1,1 +1,1 @@
-export default async (filename) => Error(`${filename} cannot be processed`);
+export default (filename) => Promise.reject(Error(`${filename} cannot be processed`));
