@@ -3,16 +3,17 @@ export default (fullArray, location, newGrades) => {
     return 0;
   }
   return fullArray
-		.filter(student => student['location'] === location)
-		.map(student => {
-  const newGrade = newGrades.find(
-				grade => grade.studentId === student.id
-			);
-  if (newGrade) {
-    student['grade'] = newGrade.grade;
-  } else {
-    student['grade'] = 'N/A';
-  }
-  return student;
-});
+    .filter((student) => student.location === location)
+    .map((student) => {
+      const updatedStudent = { ...student };
+      const newGrade = newGrades.find(
+        (grade) => grade.studentId === student.id,
+      );
+      if (newGrade) {
+        updatedStudent.grade = newGrade.grade;
+      } else {
+        updatedStudent.grade = 'N/A';
+      }
+      return updatedStudent;
+    });
 };
