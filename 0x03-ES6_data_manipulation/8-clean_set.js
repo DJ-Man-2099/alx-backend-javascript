@@ -1,5 +1,5 @@
 export default (set, startString) => {
-  if (!startString) {
+  if (!startString || typeof startString !== 'string') {
     return '';
   }
   const stringLength = startString.length;
