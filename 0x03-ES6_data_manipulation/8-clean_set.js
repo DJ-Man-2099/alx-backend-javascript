@@ -5,5 +5,5 @@ export default (set, startString) => {
   const stringLength = startString.length;
   const result = [...set.values()].filter((value) => value.startsWith(startString))
     .map((value) => value.slice(stringLength));
-  return new Set(result).join('-');
+  return result.join('-');
 };
