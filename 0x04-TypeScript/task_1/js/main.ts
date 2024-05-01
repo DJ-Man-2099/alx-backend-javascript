@@ -40,3 +40,14 @@ const printTeacher: printTeacherFunction = (
 ) => `${firstName.charAt(0)}. ${lastName}`;
 
 console.log(printTeacher('John', 'Doe'));
+
+class StudentClass {
+	firstName: string;
+	lastName: string;
+	constructor(firstName: string, lastName: string) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	workOnHomework = () => 'Currently working';
+	displayName = () => this.firstName;
+}
