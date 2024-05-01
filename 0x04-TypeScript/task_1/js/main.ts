@@ -1,3 +1,7 @@
+const testing = document.createElement('div');
+testing.textContent = 'Testing';
+
+document.body.appendChild(testing);
 interface Teacher {
 	readonly firstName: string;
 	readonly lastName: string;
@@ -51,3 +55,8 @@ class StudentClass {
 	workOnHomework = () => 'Currently working';
 	displayName = () => this.firstName;
 }
+
+const class1 = new StudentClass('John', 'Doe');
+
+console.log(class1.workOnHomework());
+console.log(class1.displayName());
