@@ -47,6 +47,31 @@ const createEmployee = (salary: number | string) =>
 		? new Teacher()
 		: new Director();
 
-console.log(createEmployee(200).workFromHome());
-console.log(createEmployee(1000).workFromHome());
-console.log(createEmployee('$500').workFromHome());
+console.log(createEmployee(200));
+console.log(createEmployee(1000));
+console.log(createEmployee('$500'));
+
+const isDirector = (
+	employee: Director | Teacher
+): employee is Director => employee instanceof Director;
+
+const executeWork = (employee: Director | Teacher) => {
+	if (isDirector(employee)) {
+		return employee.workDirectorTasks();
+	} else {
+		return employee.workTeacherTasks();
+	}
+};
+
+console.log(executeWork(createEmployee(200)));
+console.log(executeWork(createEmployee(1000)));
+
+type Subjects = 'Math' | 'History';
+
+const teachClass = (todayClass: Subjects) =>
+	todayClass === 'Math'
+		? 'Teaching Math'
+		: 'Teaching History';
+
+console.log(teachClass('Math'));
+console.log(teachClass('History'));
