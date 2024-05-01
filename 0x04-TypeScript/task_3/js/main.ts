@@ -1,62 +1,24 @@
+/// <reference path="./crud.d.ts" />
+import { RowID, RowElement } from './interface';
+import * as CRUD from './crud';
+
 const testing = document.createElement('div');
 testing.textContent = 'Testing';
 
 document.body.appendChild(testing);
-interface Teacher {
-	readonly firstName: string;
-	readonly lastName: string;
-	fullTimeEmployee: boolean;
-	yearsOfExperience?: number;
-	location: string;
-	[attributeName: string]: any;
-}
 
-interface Directors extends Teacher {
-	numberOfReports: number;
-}
-
-const teacher3: Teacher = {
-	firstName: 'John',
-	fullTimeEmployee: false,
-	lastName: 'Doe',
-	location: 'London',
-	contract: false
+const row: RowElement = {
+	firstName: 'Guillaume',
+	lastName: 'Salva'
 };
 
-console.log(teacher3);
+const newRowID: RowID = CRUD.insertRow(row);
 
-const director1: Directors = {
-	firstName: 'John',
-	lastName: 'Doe',
-	location: 'London',
-	fullTimeEmployee: true,
-	numberOfReports: 17
+const updatedRow: RowElement = {
+	...row,
+	age: 23
 };
-console.log(director1);
 
-interface printTeacherFunction {
-	(firstName: string, lastName: string): string;
-}
+CRUD.updateRow(newRowID, updatedRow);
 
-const printTeacher: printTeacherFunction = (
-	firstName: string,
-	lastName: string
-) => `${firstName.charAt(0)}. ${lastName}`;
-
-console.log(printTeacher('John', 'Doe'));
-
-class StudentClass {
-	firstName: string;
-	lastName: string;
-	constructor(firstName: string, lastName: string) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-	workOnHomework = () => 'Currently working';
-	displayName = () => this.firstName;
-}
-
-const class1 = new StudentClass('John', 'Doe');
-
-console.log(class1.workOnHomework());
-console.log(class1.displayName());
+CRUD.deleteRow(newRowID);
