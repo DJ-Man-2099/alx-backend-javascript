@@ -8,7 +8,7 @@ namespace Subjects {
 		getRequirements = () =>
 			'Here is the list of requirements for React';
 		getAvailableTeacher = () =>
-			this.teacher.experienceTeachingReact !== undefined
+			this.teacher?.experienceTeachingReact !== undefined
 				? `Available Teacher: ${this.teacher.firstName}`
 				: 'No available teacher';
 	}

@@ -8,7 +8,7 @@ namespace Subjects {
 		getRequirements = () =>
 			'Here is the list of requirements for Java';
 		getAvailableTeacher = () =>
-			this.teacher.experienceTeachingJava !== undefined
+			this.teacher?.experienceTeachingJava !== undefined
 				? `Available Teacher: ${this.teacher.firstName}`
 				: 'No available teacher';
 	}
