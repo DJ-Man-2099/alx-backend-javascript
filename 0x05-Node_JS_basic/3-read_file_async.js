@@ -4,7 +4,7 @@ const countStudents = (path) => {
   return new Promise((resolve, reject) => {
     fs.readFile(path, { encoding: 'utf8' }, (err, data) => {
       if (err) {
-        reject(Error('Cannot load the database'));
+        reject(new Error('Cannot load the database'));
         return;
       }
 
@@ -32,7 +32,7 @@ const countStudents = (path) => {
       });
       console.log(`Number of students: ${count}`);
       for (const key in fields) {
-        if (Object.hasOwnProperty.call(fields, key)) {
+        if (Object.prototype.hasOwnProperty.call(fields, key)) {
           const size = fields[key].length;
           const list = fields[key].join(', ');
           console.log(`Number of students in ${key}: ${size}. List: ${list}`);
