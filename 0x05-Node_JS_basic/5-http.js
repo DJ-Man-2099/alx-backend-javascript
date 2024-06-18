@@ -50,14 +50,19 @@ const countStudents = (path) => {
 };
 
 const app = http.createServer(async (req, res) => {
-  res.setHeader('Content-Type', 'text/plain');
   const url = req.url;
+  let message;
+  res.setHeader('Content-Type', 'text/plain');
   if (url === '/') {
     res.end('Hello Holberton School!');
   } else if (url === '/students') {
     res.write('This is the list of our students\n');
-    const message = await countStudents(path);
-    res.end(message.join('\n'));
+    try {
+      message = await countStudents(path);
+      res.end(message.join('\n'));
+    } catch (error) {
+      res.end(error);
+    }
   }
 });
 
