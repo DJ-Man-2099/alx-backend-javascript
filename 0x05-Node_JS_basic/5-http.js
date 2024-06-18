@@ -52,6 +52,7 @@ const countStudents = (path) => {
 const app = http.createServer(async (req, res) => {
   let message;
   const url = req.url;
+  res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   if (url === '/') {
     res.end('Hello Holberton School!');
@@ -61,6 +62,7 @@ const app = http.createServer(async (req, res) => {
       message = await countStudents(path);
       res.end(message.join('\n'));
     } catch (error) {
+      res.statusCode = 404;
       res.end(error.message);
     }
   }
