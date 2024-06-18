@@ -1,6 +1,5 @@
 const readDatabase = require('../utils');
 
-
 class StudentsController {
   static async getAllStudents(req, res) {
     const path = process.argv[2];
