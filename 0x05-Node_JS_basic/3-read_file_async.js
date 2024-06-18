@@ -14,9 +14,8 @@ const countStudents = (path) => {
       let count = 0;
       const firstNameIndex = 0;
       const fieldIndex = 3;
-      for (let index = 0; index < lines.length; index += 1) {
+      lines.forEach((line, index) => {
         // Skip the header row
-        const line = lines[i];
         if (index === 0 || line.trim() === '') return;
 
         count += 1;
@@ -30,7 +29,7 @@ const countStudents = (path) => {
         } else {
           fields[field].push(firstName);
         }
-      };
+      });
       console.log(`Number of students: ${count}`);
       for (const key in fields) {
         if (Object.hasOwnProperty.call(fields, key)) {
