@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const countStudents = (path) => {
   try {
-    const data = fs.readFileSync(path, 'utf-8');
+    const data = fs.readFileSync(path, { encoding: 'utf8' });
     const lines = data.toString().trim().split('\n');
     // Process each line
     const fields = {};
@@ -13,7 +13,7 @@ const countStudents = (path) => {
       // Skip the header row
       if (index === 0 || line.trim() === '') return;
 
-      count++;
+      count += 1;
       // Split each line into columns. Assuming comma-separated values
       const columns = line.split(',');
       // Example: Log the first column (e.g., name)
