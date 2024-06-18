@@ -1,9 +1,9 @@
 const http = require('http');
+const fs = require('fs');
 
 const port = 1245;
 const path = process.argv[2];
 
-const fs = require('fs');
 
 const countStudents = (path) => {
   const fields = {};
