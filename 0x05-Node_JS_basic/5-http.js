@@ -1,8 +1,8 @@
-const http = require('http');
 const fs = require('fs');
+const http = require('http');
 
-const port = 1245;
 const path = process.argv[2];
+const port = 1245;
 
 
 const countStudents = (path) => {
@@ -50,8 +50,8 @@ const countStudents = (path) => {
 };
 
 const app = http.createServer(async (req, res) => {
-  const url = req.url;
   let message;
+  const url = req.url;
   res.setHeader('Content-Type', 'text/plain');
   if (url === '/') {
     res.end('Hello Holberton School!');
