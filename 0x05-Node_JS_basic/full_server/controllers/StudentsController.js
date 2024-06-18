@@ -1,9 +1,9 @@
 const readDatabase = require('../utils');
 
-const path = process.argv[2];
 
 class StudentsController {
   static async getAllStudents(req, res) {
+    const path = process.argv[2];
     const result = [];
     try {
       const data = await readDatabase(path);
@@ -22,6 +22,7 @@ class StudentsController {
   }
 
   static async getAllStudentsByMajor(req, res) {
+    const path = process.argv[2];
     const { major } = req.params;
     if (!['CS', 'SWE'].includes(major)) {
       return res.status(500).send('Major parameter must be CS or SWE');
