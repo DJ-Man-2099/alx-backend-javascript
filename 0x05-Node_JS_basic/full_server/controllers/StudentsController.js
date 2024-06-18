@@ -4,7 +4,7 @@ const path = process.argv[2];
 
 class StudentsController {
   static async getAllStudents(req, res) {
-    let result = [];
+    const result = [];
     try {
       const data = await readDatabase(path);
       result.push('This is the list of our students');
