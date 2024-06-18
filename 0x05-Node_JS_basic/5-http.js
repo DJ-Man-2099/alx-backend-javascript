@@ -4,7 +4,6 @@ const http = require('http');
 const path = process.argv[2];
 const port = 1245;
 
-
 const countStudents = (path) => {
   const fields = {};
   let count = 0;
@@ -51,7 +50,7 @@ const countStudents = (path) => {
 
 const app = http.createServer(async (req, res) => {
   let message;
-  const url = req.url;
+  const { url } = req;
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   if (url === '/') {
