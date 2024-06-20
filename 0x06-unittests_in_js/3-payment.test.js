@@ -12,7 +12,7 @@ afterEach(() => {
 });
 
 describe("sendPaymentRequestToApi", () => {
-	it("should equal same as original function", () => {
+	it("should equal same as original function [BASE]", () => {
 		const newFunction = sinon.spy(Utils, 'calculateNumber');
 		const oldFunction = sinon.spy(calculateNumber);
 		sendPaymentRequestToApi(100, 200);
@@ -21,6 +21,16 @@ describe("sendPaymentRequestToApi", () => {
 		assert(oldFunction.calledOnce);
 		assert.equals(newFunction.firstCall.returnValue,
 			oldFunction.firstCall.returnValue);
+	});
 
+	it("should equal same as original function [EDGE]", () => {
+		const newFunction = sinon.spy(Utils, 'calculateNumber');
+		const oldFunction = sinon.spy(calculateNumber);
+		sendPaymentRequestToApi(100.299999999999, 200.4999999999999);
+		oldFunction("SUM", 100.299999999999, 200.4999999999999);
+		assert(newFunction.calledOnce);
+		assert(oldFunction.calledOnce);
+		assert.equals(newFunction.firstCall.returnValue,
+			oldFunction.firstCall.returnValue);
 	});
 })
