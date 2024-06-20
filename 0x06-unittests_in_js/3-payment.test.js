@@ -23,6 +23,22 @@ describe("sendPaymentRequestToApi", () => {
 			oldFunction.firstCall.returnValue);
 	});
 
+	it("should equal same as original function [console.log]", () => {
+		const newFunction = sinon.spy(Utils, 'calculateNumber');
+		const oldFunction = sinon.spy(calculateNumber);
+		const logFunction = sinon.spy(console, 'log');
+		sendPaymentRequestToApi(100.299999999999, 200.4999999999999);
+		oldFunction("SUM", 100.299999999999, 200.4999999999999);
+		assert(newFunction.calledOnce);
+		assert(oldFunction.calledOnce);
+		assert(logFunction.calledOnce);
+		assert.equals(newFunction.firstCall.returnValue,
+			oldFunction.firstCall.returnValue);
+		assert.equals(logFunction.firstCall.args.length, 1);
+		assert.equals(logFunction.firstCall.args[0],
+			`The total is: ${oldFunction.firstCall.returnValue}`);
+	});
+
 	it("should equal same as original function [EDGE]", () => {
 		const newFunction = sinon.spy(Utils, 'calculateNumber');
 		const oldFunction = sinon.spy(calculateNumber);
