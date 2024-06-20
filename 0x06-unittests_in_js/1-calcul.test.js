@@ -9,11 +9,11 @@ describe('Calculate Number', () => {
     assert.strictEqual(calculateNumber('SUM', 1.49999999999, 3.399999999), 4);
   });
   it('SUBTRACT with edge cases', () => {
-    assert.strictEqual(calculateNumber('SUBTRACT', 1, 3), 2);
+    assert.strictEqual(calculateNumber('SUBTRACT', 1, 3), -2);
     assert.strictEqual(calculateNumber('SUBTRACT', 1.4, 4.5), -4);
-    assert.strictEqual(calculateNumber('SUBTRACT', 1.2, 3), 2);
-    assert.strictEqual(calculateNumber('SUBTRACT', 1.7, 3), 1);
-    assert.strictEqual(calculateNumber('SUBTRACT', 1.49999999999, 3.399999999), 2);
+    assert.strictEqual(calculateNumber('SUBTRACT', 1.2, 3), -2);
+    assert.strictEqual(calculateNumber('SUBTRACT', 1.7, 3), -1);
+    assert.strictEqual(calculateNumber('SUBTRACT', 1.49999999999, 3.399999999), -2);
   });
   it('DIVIDE with edge cases', () => {
     assert.strictEqual(calculateNumber('DIVIDE', 3, 1), 3);
