@@ -1,6 +1,5 @@
 const sinon = require("sinon");
-const referee = require("@sinonjs/referee");
-const assert = referee.assert;
+const { expect } = require('chai');
 
 const calculateNumber = require("./2-calcul_chai");
 const sendPaymentRequestToApi = require("./3-payment");
@@ -17,26 +16,21 @@ describe("sendPaymentRequestToApi", () => {
 		const oldFunction = sinon.spy(calculateNumber);
 		sendPaymentRequestToApi(100, 200);
 		oldFunction("SUM", 100, 200);
-		assert(newFunction.calledOnce);
-		assert(oldFunction.calledOnce);
-		assert.equals(newFunction.firstCall.returnValue,
-			oldFunction.firstCall.returnValue);
+		expect(newFunction.calledOnce).to.be.true;
+		expect(oldFunction.calledOnce).to.be.true;
+		expect(newFunction.firstCall.returnValue).to.be
+			.equal(oldFunction.firstCall.returnValue);
 	});
 
 	it("should equal same as original function [console.log]", () => {
 		const newFunction = sinon.spy(Utils, 'calculateNumber');
-		const oldFunction = sinon.spy(calculateNumber);
 		const logFunction = sinon.spy(console, 'log');
-		sendPaymentRequestToApi(100.299999999999, 200.4999999999999);
-		oldFunction("SUM", 100.299999999999, 200.4999999999999);
-		assert(newFunction.calledOnce);
-		assert(oldFunction.calledOnce);
-		assert(logFunction.calledOnce);
-		assert.equals(newFunction.firstCall.returnValue,
-			oldFunction.firstCall.returnValue);
-		assert.equals(logFunction.firstCall.args.length, 1);
-		assert.equals(logFunction.firstCall.args[0],
-			`The total is: ${oldFunction.firstCall.returnValue}`);
+		sendPaymentRequestToApi(100, 200);
+		expect(newFunction.calledOnce).to.be.true;
+		expect(logFunction.calledOnce).to.be.true;
+		expect(newFunction.firstCall.returnValue).to.be.equal(300);
+		expect(logFunction.firstCall.args.length).to.be.equal(1);
+		expect(logFunction.firstCall.args[0]).to.be.equal(`The total is: ${300}`);
 	});
 
 	it("should equal same as original function [EDGE]", () => {
@@ -44,9 +38,9 @@ describe("sendPaymentRequestToApi", () => {
 		const oldFunction = sinon.spy(calculateNumber);
 		sendPaymentRequestToApi(100.299999999999, 200.4999999999999);
 		oldFunction("SUM", 100.299999999999, 200.4999999999999);
-		assert(newFunction.calledOnce);
-		assert(oldFunction.calledOnce);
-		assert.equals(newFunction.firstCall.returnValue,
-			oldFunction.firstCall.returnValue);
+		expect(newFunction.calledOnce).to.be.true;
+		expect(oldFunction.calledOnce).to.be.true;
+		expect(newFunction.firstCall.returnValue).to.be
+			.equal(oldFunction.firstCall.returnValue);
 	});
 })
